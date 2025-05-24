@@ -1,7 +1,9 @@
 body{
     background-color: #000;
-    font-family: var(--font-dm-sans);
+    font-family: "DM Sans", sans-serif;
 }
+
+/*SIDEBAR*/
 
 .sidebar{
     position:fixed;
@@ -15,7 +17,7 @@ body{
 .sidebar__navigation{
     background-color: #121212;
     border-radius:8px;
-    padding:16px 0 0 16px;
+    padding: 5px 0 0 5px;
 }
 
 .logo{
@@ -43,6 +45,11 @@ body{
     text-decoration: none;
     font-weight: 600;
     font-size: 14px;
+    margin-right: 6px;
+}
+
+.sidebar span {
+    margin-right: 8px;
 }
 
 .library{
@@ -86,7 +93,7 @@ body{
 }
 
 .library .library__content .fa-plus{
-    margin: 24px 10px;
+    margin: 20px 10px;
 }
 
 .section-playlist{
@@ -162,9 +169,11 @@ body{
     cursor:pointer;
     width: 170px;
     margin:8px;
-    padding:8px;
+    padding:8px 7px;
     border-radius:20px;
 }
+
+/*FOOTER*/
 
 .disclaimer-premium {
     position: fixed;

@@ -4,7 +4,7 @@
     max-width: 80vw;
     height: 100vh;
     margin-left: 320px;
-    margin-right: 56px;
+    margin-right: 15px;
 }
 
 .header__navigation {
@@ -15,7 +15,6 @@
     margin: 10px;
     border-radius: 8px;
     background-color: #121212;
-    padding: 12px;
   }
   
   .header__navigation .navigation {
@@ -35,8 +34,8 @@
     justify-content: center;
     width: 32px;
     height: 32px;
-    background: var(--bg-icon);
-    background-color:var(--bg-arrow-color);
+    background: #131313;
+    background-color:rgba(0,0,0,7);
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -92,7 +91,19 @@
     border-radius: 40px;
   }
 
+  .header__login .subscribe:hover {
+    transform: scale(1.04);
+    color: #1db954;
+  }
+
+  .header__login .login:hover {
+    transform: scale(1.04);
+    background-color: #1db954;
+    color: #fff;
+  }
+
   /* PLAYLIST */
+
 .playlist-container {
   height: 68vh;
   padding-top: 16px;
@@ -163,6 +174,7 @@
   color: #fff;
   font-size: 24px;
   font-weight: 700;
+  text-decoration: none;
 }
 
 /* COLOR CARDS */
@@ -235,7 +247,7 @@
 }
 
 .grid-container {
-  grid-gap:24px;
+  grid-gap:50px;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   min-width: 767px;
@@ -249,7 +261,7 @@
   isolation: isolate;
   padding: 16px;
   position: relative;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.32 ease;
   width: 100%;
 }
 
@@ -281,6 +293,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   min-height: 62px;
+  text-decoration: none;
 }
 
 .card-text a {
