@@ -41,7 +41,7 @@
     cursor: pointer;
   }
   
-  .header__login {
+  .header__logout {
     display: flex;
     align-items: center;
   }
@@ -74,7 +74,7 @@
     outline: none;
   }
   
-  .header__login .subscribe {
+  .header__logout .subscribe {
     color: #a7a7a7;
     font-size: 16px;
     font-weight: 700;
@@ -82,7 +82,7 @@
     margin-right: 32px;
   }
   
-  .header__login .login {
+  .header__logout .logout {
     width: 100px;
     height: 48px;
     color: #000;
@@ -91,12 +91,12 @@
     border-radius: 40px;
   }
 
-  .header__login .subscribe:hover {
+  .header__logout .subscribe:hover {
     transform: scale(1.04);
     color: #1db954;
   }
 
-  .header__login .login:hover {
+  .header__logout .logout:hover {
     transform: scale(1.04);
     background-color: #1db954;
     color: #fff;
