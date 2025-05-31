@@ -74,14 +74,6 @@
     outline: none;
   }
   
-  .header__logout .subscribe {
-    color: #a7a7a7;
-    font-size: 16px;
-    font-weight: 700;
-    background-color: transparent;
-    margin-right: 32px;
-  }
-  
   .header__logout .logout {
     width: 100px;
     height: 48px;
@@ -89,11 +81,6 @@
     font-size: 16px;
     font-weight: 700;
     border-radius: 40px;
-  }
-
-  .header__logout .subscribe:hover {
-    transform: scale(1.04);
-    color: #1db954;
   }
 
   .header__logout .logout:hover {
