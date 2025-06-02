@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastre-se e comece a curtir</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="./src/assets/icons/favicon.ico"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      font-family: "DM Sans", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #181818;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+      width: 400px;
+      text-align: center;
+    }
+
+    .logo {
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 120px;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      background-color: #242424;
+      color: white;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #1DB954;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background-color: #1ed760;
+    }
+
+    .login-text {
+      color: white;
+      margin-top: 16px;
+    }
+
+    .login-text a {
+      color: #1DB954;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="./src/assets/icons/logo-spotify.png" alt="Logo">
+    </div>
+    <h1>Cadastre-se e comece a curtir</h1>
+    <form action="#" method="POST" onsubmit="return registerUser(event)">
+      <input type="text" id="nome" placeholder="Nome completo" required>
+      <input type="email" id="email" placeholder="E-mail" required>
+      <input type="password" id="senha" placeholder="Crie uma senha" required>
+      <button type="submit" class="btn">Cadastrar</button>
+    </form>
+
+    <p class="login-text">Já tem uma conta? <a href="login.html">Faça login</a></p>
+  </div>
+
+  <script>
+    function validarEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+
+    function validarNome(nome) {
+      return nome.trim().includes(" ");
+    }
+
+    function registerUser(event) {
+      event.preventDefault();
+      
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      if (!validarNome(nome)) {
+        alert("Digite seu nome completo!");
+        return;
+      }
+
+      if (!validarEmail(email)) {
+        alert("Digite um e-mail válido!");
+        return;
+      }
+
+      if (senha.length < 6) {
+        alert("A senha deve ter pelo menos 6 caracteres.");
+        return;
+      }
+
+      localStorage.setItem(email, JSON.stringify({ nome, email, senha }));
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
+
+
+
