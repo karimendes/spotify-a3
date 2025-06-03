@@ -1,0 +1,96 @@
+/*CADASTRO E LOGIN*/
+
+body {
+    background-color: #000;
+    font-family: "DM Sans", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .container {
+    background-color: #181818;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    width: 400px;
+    text-align: center;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+  }
+
+  .logo img {
+    width: 120px;
+  }
+
+  h1 {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #242424;
+    color: white;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #1DB954;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    margin-top: 10px;
+  }
+
+  .btn:hover {
+    background-color: #1ed760;
+  }
+
+  /*CADASTRO*/
+
+  .register-text {
+    color: white;
+    margin-top: 16px;
+  }
+
+  .register-text a {
+    color: #1DB954;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .register-text a:hover {
+    text-decoration: underline;
+  }
+
+/*LOGIN*/
+
+.login-text {
+    color: white;
+    margin-top: 16px;
+  }
+
+  .login-text a {
+    color: #1DB954;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .login-text a:hover {
+    text-decoration: underline;
+  }
