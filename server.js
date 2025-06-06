@@ -5,12 +5,13 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path');
 
+
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8000; 
 
-// Configuração do Pool de Conexões do MySQL
+
 const pool = mysql.createPool({
     host: process.env.DB_HOST || '127.0.0.1',
     user: process.env.DB_USER || 'root',
@@ -21,21 +22,22 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
+
 pool.getConnection()
     .then(connection => {
-        connection.release(); // Libera a conexão imediatamente após o teste
+        connection.release(); 
         console.log('Conexão com o MySQL estabelecida com sucesso!');
     })
     .catch(err => {
         console.error('Erro ao conectar ao MySQL:', err.message);
         console.error('Verifique suas credenciais no arquivo .env e se o MySQL está rodando.');
-        process.exit(1); // Encerra o processo se não conseguir conectar ao DB
+        process.exit(1); 
     });
 
 
-app.use(cors()); // Habilita CORS para permitir requisições de diferentes origens (frontend)
-app.use(express.json()); // Habilita o Express para parsear JSON do corpo das requisições
-app.use(express.static(path.join(__dirname, 'public'))); // Serve arquivos estáticos da pasta 'public'
+app.use(cors()); 
+app.use(express.json()); 
+app.use(express.static(path.join(__dirname, 'public'))); 
 
 
 app.post('/api/register', async (req, res) => {
@@ -47,26 +49,24 @@ app.post('/api/register', async (req, res) => {
     }
 
     try {
-       
+        
         const saltRounds = 10;
         const password_hash = await bcrypt.hash(senha, saltRounds);
 
-     
+       
         const [result] = await pool.execute(
             'INSERT INTO usuarios (login, email, nome, senha) VALUES (?, ?, ?, ?)',
-            [nome, email, nome, password_hash] // 'nome' usado para 'login' e 'nome' na DB
+            [nome, email, nome, password_hash] 
         );
 
-        if (result.affectedRows === 1) {
-        
-            res.status(201).json({ userId: result.insertId });
-            console.log('Usuário cadastrado com sucesso! Redirecionando para a próxima tela.'); // Mensagem no console do servidor
-        } else {
-            res.status(500).json({ message: 'Erro ao cadastrar usuário.' });
-        }
+       if (result.affectedRows === 1) {
+    
+    res.status(201).json({ message: 'Usuário cadastrado com sucesso!', userId: result.insertId });
+    console.log('Usuário cadastrado com sucesso! ID:', result.insertId); // Log no servidor
+}
 
     } catch (error) {
-        // Tratamento de erros específicos do MySQL (e-mail/login duplicado)
+       
         if (error.code === 'ER_DUP_ENTRY') {
             if (error.sqlMessage.includes('login') || error.sqlMessage.includes('nome')) {
                 return res.status(409).json({ message: 'Nome de usuário ou login já existe.' });
@@ -80,6 +80,7 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
+
 app.post('/api/login', async (req, res) => {
     const { email, senha } = req.body;
 
@@ -88,6 +89,7 @@ app.post('/api/login', async (req, res) => {
     }
 
     try {
+        
         const [rows] = await pool.execute(
             'SELECT * FROM usuarios WHERE email = ?',
             [email]
@@ -95,17 +97,23 @@ app.post('/api/login', async (req, res) => {
 
         const user = rows[0];
 
+       
         if (!user) {
             return res.status(401).json({ message: 'Credenciais inválidas.' });
         }
 
+        
         const isMatch = await bcrypt.compare(senha, user.senha);
 
+        
         if (!isMatch) {
             return res.status(401).json({ message: 'Credenciais inválidas.' });
         }
 
-        res.status(200).json({ message: 'Login bem-sucedido!', user: { id: user.id, nome: user.nome, email: user.email } });
+       
+        
+        res.status(200).json({ user: { id: user.id, nome: user.nome, email: user.email } });
+        console.log('Login bem-sucedido! Usuário:', user.email); 
 
     } catch (error) {
         console.error('Erro no login:', error);
@@ -116,7 +124,7 @@ app.post('/api/login', async (req, res) => {
 
 app.get('/api/users', async (req, res) => {
     try {
-      
+        
         const [rows] = await pool.execute('SELECT id, login, email, nome, created_at FROM usuarios');
         res.status(200).json(rows);
     } catch (error) {
