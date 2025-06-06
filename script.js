@@ -32,25 +32,26 @@ async function registerUser(event) {
   }
 
   try {
-    const response = await fetch('/api/register', { // Rota do server.js
+    const response = await fetch('/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ nome, email, senha }) // Envia os dados como JSON
+      body: JSON.stringify({ nome, email, senha })
     });
 
+    const data = await response.json(); 
+
     if (response.ok) { 
-      console.log('Cadastro realizado com sucesso! Redirecionando para a tela de login.');
-      window.location.href = "login.html"; // Redireciona para a página de login
-    } else {
-      // Se a resposta não for ok (ex: 400, 409, 500)
-      const errorData = await response.json(); // Ainda precisamos ler o JSON para mensagens de erro
-      alert("Erro no cadastro: " + errorData.message); // Exibe a mensagem de erro do servidor
-      console.error('Detalhes do erro:', errorData); // Para depuração
+      alert(data.message); 
+      console.log('Cadastro bem-sucedido. ID do usuário:', data.userId);
+      window.location.href = "login.html"; 
+    } else { 
+      
+      alert("Erro no cadastro: " + data.message); 
+      console.error('Detalhes do erro:', data);
     }
   } catch (error) {
-    // Erro de rede ou outro problema de conexão
     console.error('Erro ao conectar com o servidor:', error);
     alert('Erro ao tentar cadastrar. Verifique sua conexão ou tente novamente mais tarde.');
   }
@@ -76,7 +77,7 @@ async function loginUser(event) {
     const data = await response.json();
 
     if (response.ok) {
-      alert(data.message);
+      console.log('Login bem-sucedido no frontend. Dados do usuário:', data.user);
       window.location.href = "index.html";
     } else {
       alert("Erro no login: " + data.message);
@@ -123,3 +124,20 @@ document.addEventListener('input', function() {
 
   requestApi(searchTerm);
 })
+
+/*LOGOUT*/
+function logout() {
+    
+    
+
+    console.log('Usuário deslogado. Redirecionando para a tela de login.');
+    window.location.href = "login.html"; 
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const logoutButton = document.getElementById('LogoutButton');
+    if (logoutButton) { 
+        logoutButton.addEventListener('click', logout);
+    }
+});
