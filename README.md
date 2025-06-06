@@ -30,6 +30,7 @@ Este projeto é uma recriação do Spotify Web, desenvolvido para o projeto do s
 - Ter instalado o NodeJS e NPM.
 - Versão JSON-Server requisitada: 0.17.0 ou 0.17.4.
 - Ter baixado a extensão "Live Server" no VSCode.
+- Instalar no terminal do arquivo server.js ,com o comando "npm install", os seguintes express,mysql2,bcrypt,dotenv,cors e path.
   
 **Como usar**
 1. Clone o repositório ou copie os arquivos para o seu computador.
