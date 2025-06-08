@@ -8,7 +8,7 @@ function requestApi(searchTerm) {
   fetch("artists.json")
     .then(response => response.json())
     .then(data => {
-      const result = data.filter(artist =>
+      const result = data.artists.filter(artist =>
         artist.name.toLowerCase().includes(searchTerm)
       );
       displayResults(result);
