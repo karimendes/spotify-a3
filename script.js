@@ -8,12 +8,13 @@ function requestApi(searchTerm) {
   fetch("artists.json")
     .then(response => response.json())
     .then(data => {
-      const result = data.artists.filter(artist =>
+      const artists = data.artists || [];
+      const result = artists.filter(artist =>
         artist.name.toLowerCase().includes(searchTerm)
       );
       displayResults(result);
-    });
-}
+    })
+};
 
 function displayResults(result) {
   resultPlaylist.classList.add("hidden")
