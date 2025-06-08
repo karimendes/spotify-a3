@@ -5,10 +5,14 @@ const resultArtist = document.getElementById("result-artist");
 const resultPlaylist = document.getElementById('result-playlists');
 
 function requestApi(searchTerm) {
-  const url = `http://localhost:3000/artists?name_like=${searchTerm}`
-  fetch(url)
-    .then((response) => response.json())
-    .then((result) => displayResults(result))
+  fetch("artists.json")
+    .then(response => response.json())
+    .then(data => {
+      const result = data.filter(artist =>
+        artist.name.toLowerCase().includes(searchTerm)
+      );
+      displayResults(result);
+    });
 }
 
 function displayResults(result) {
@@ -34,20 +38,3 @@ document.addEventListener('input', function() {
 
   requestApi(searchTerm);
 })
-
-/*LOGOUT*/
-function logout() {
-    
-    
-
-    console.log('Usuário deslogado. Redirecionando para a tela de login.');
-    window.location.href = "login.html"; 
-}
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const logoutButton = document.getElementById('LogoutButton');
-    if (logoutButton) { 
-        logoutButton.addEventListener('click', logout);
-    }
-});
